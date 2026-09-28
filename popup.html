@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Afkar AI Pilot | مختبر أفكار AI</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <div class="header">
+      <div class="logo-group">
+        <img src="icon48.png" alt="Afkar AI Logo" class="logo-img">
+        <div class="title-wrap">
+          <h1>Afkar AI Pilot</h1>
+          <p class="subtitle">مختبر أفكار AI • 1080P Master</p>
+        </div>
+      </div>
+      <div class="status-pill">
+        <span class="dot"></span>
+        <span class="status-text">Active</span>
+      </div>
+    </div>
+
+    <!-- YouTube Channel Link Card -->
+    <a href="https://www.youtube.com/@AfkarAILab" target="_blank" class="channel-card" id="ytChannelLink" title="زيارة قناة مختبر أفكار AI على يوتيوب">
+      <div class="channel-left">
+        <div class="yt-icon-box">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="#ff0033">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        </div>
+        <div class="channel-info">
+          <div class="channel-name-row">
+            <span class="channel-name">مختبر أفكار AI</span>
+            <span class="verified-badge" title="Official Channel">✓</span>
+          </div>
+          <span class="channel-handle">@AfkarAILab</span>
+        </div>
+      </div>
+      <div class="channel-badge-btn">
+        <span>قناتنا ↗</span>
+      </div>
+    </a>
+
+    <!-- Quick Stats -->
+    <div class="card stats-card">
+      <div class="stat-item">
+        <span class="stat-num" id="totalDownloaded">0</span>
+        <span class="stat-label">الفيديوهات المحفوظة</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num" id="detectedCount">0</span>
+        <span class="stat-label">في المحادثة الحالية</span>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="card controls-card">
+      <div class="control-row">
+        <span>⚡ تحميل تلقائي للفيديوهات الجديدة</span>
+        <label class="switch">
+          <input type="checkbox" id="autoDownloadToggle">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="control-row">
+        <span>🔔 إشعارات النظام عند التحميل</span>
+        <label class="switch">
+          <input type="checkbox" id="notificationsToggle" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Detected Videos Section -->
+    <div class="section-title">
+      <span>🎬 الفيديوهات المكتشفة (1080P Raw)</span>
+      <button id="downloadAllBtn" class="batch-btn" style="display: none;">⬇️ تحميل الكل</button>
+    </div>
+
+    <div class="videos-list" id="videosList">
+      <div class="empty-state">
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5">
+          <polygon points="23 7 16 12 23 17 23 7"></polygon>
+          <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+        </svg>
+        <p>افتح محادثة Dola AI تحتوي على فيديوهات لتحميلها بأعلى جودة 1080P بدون علامة مائية!</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

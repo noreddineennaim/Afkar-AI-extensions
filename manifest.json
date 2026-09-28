@@ -1,0 +1,66 @@
+{
+  "manifest_version": 3,
+  "name": "Afkar AI Pilot - Dola Video Master",
+  "version": "2.2.0",
+  "description": "Smart 1080P Unwatermarked Video Downloader & Workflow Copilot for Dola AI by مختبر أفكار AI (@AfkarAILab).",
+  "homepage_url": "https://www.youtube.com/@AfkarAILab",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "action": {
+    "default_title": "Afkar AI Pilot - مختبر أفكار AI",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "permissions": [
+    "downloads",
+    "storage",
+    "notifications",
+    "declarativeNetRequest"
+  ],
+  "host_permissions": [
+    "https://*.dola.com/*",
+    "https://*.doubao.com/*",
+    "https://*.byteintlapi.com/*",
+    "https://*.ibytedtos.com/*",
+    "https://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.dola.com/*",
+        "https://dola.com/*",
+        "https://www.doubao.com/*",
+        "https://doubao.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "page-interceptor.js",
+        "icon128.png",
+        "icon48.png",
+        "icon16.png"
+      ],
+      "matches": [
+        "https://www.dola.com/*",
+        "https://dola.com/*",
+        "https://www.doubao.com/*",
+        "https://doubao.com/*"
+      ]
+    }
+  ]
+}

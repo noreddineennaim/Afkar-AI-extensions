@@ -1,0 +1,641 @@
+/* Afkar AI Pilot - مختبر أفكار AI Content Styles */
+
+/* ==========================================================================
+   1. On-Card Floating Download Button (Inside Chat Videos)
+   ========================================================================== */
+.afkar-download-btn,
+.earnifyx-download-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Tajawal", "Cairo", Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #0a0d16 !important;
+  background: linear-gradient(135deg, #00f0ff 0%, #a855f7 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 240, 255, 0.45), 0 0 12px rgba(168, 85, 247, 0.35);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(8px);
+}
+
+.afkar-download-btn:hover,
+.earnifyx-download-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 240, 255, 0.7), 0 0 20px rgba(168, 85, 247, 0.5);
+}
+
+.afkar-download-btn:active,
+.earnifyx-download-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.afkar-download-btn svg,
+.earnifyx-download-btn svg {
+  stroke: #0a0d16;
+  filter: drop-shadow(0 0 2px rgba(0, 240, 255, 0.5));
+}
+
+.afkar-download-btn.loading,
+.earnifyx-download-btn.loading {
+  opacity: 0.8;
+  cursor: wait;
+  background: #333344 !important;
+  color: #fff !important;
+}
+
+.afkar-download-btn.success,
+.earnifyx-download-btn.success {
+  background: #00e676 !important;
+  color: #0a0d16 !important;
+  box-shadow: 0 4px 15px rgba(0, 230, 118, 0.6);
+}
+
+/* ==========================================================================
+   2. On-Page Docked & Draggable Bar
+   ========================================================================== */
+#afkar-dock-container,
+#earnifyx-dock-container {
+  position: fixed;
+  bottom: 95px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2147483640;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Tajawal", "Cairo", Roboto, sans-serif;
+  user-select: none;
+  width: max-content;
+  max-width: 92vw;
+  pointer-events: auto;
+}
+
+/* Dock Container Collapsed / Minimized Pill */
+#afkar-dock-container.minimized,
+#earnifyx-dock-container.minimized {
+  width: auto;
+  left: auto !important;
+  right: 24px !important;
+  bottom: 95px !important;
+  top: auto !important;
+  transform: none !important;
+}
+
+#afkar-dock-container.minimized .afkar-dock-main,
+#afkar-dock-container.minimized .afkar-scenes-drawer,
+#earnifyx-dock-container.minimized .earnifyx-dock-main,
+#earnifyx-dock-container.minimized .earnifyx-scenes-drawer {
+  display: none !important;
+}
+
+.afkar-min-pill,
+.earnifyx-min-pill {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  background: rgba(10, 13, 22, 0.95);
+  border: 1px solid rgba(0, 240, 255, 0.5);
+  padding: 8px 16px;
+  border-radius: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.75), 0 0 18px rgba(0, 240, 255, 0.35);
+  backdrop-filter: blur(16px);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+#afkar-dock-container.minimized .afkar-min-pill,
+#earnifyx-dock-container.minimized .earnifyx-min-pill {
+  display: flex !important;
+}
+
+.afkar-min-pill:hover,
+.earnifyx-min-pill:hover {
+  transform: translateY(-2px);
+  border-color: #00f0ff;
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.85), 0 0 24px rgba(0, 240, 255, 0.6);
+}
+
+.afkar-min-logo {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.afkar-min-badge,
+.earnifyx-min-badge {
+  background: linear-gradient(135deg, #00f0ff 0%, #a855f7 100%);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #0a0d16;
+}
+
+/* Main Bar */
+.afkar-dock-main,
+.earnifyx-dock-main {
+  display: flex;
+  align-items: center;
+  background: rgba(12, 16, 26, 0.96);
+  border: 1px solid rgba(35, 45, 66, 0.9);
+  border-radius: 30px;
+  padding: 6px 14px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7), 0 0 22px rgba(0, 240, 255, 0.2);
+  backdrop-filter: blur(24px);
+  gap: 12px;
+}
+
+/* Drag Handle */
+.afkar-drag-handle,
+.earnifyx-drag-handle {
+  cursor: grab;
+  color: #64748b;
+  font-size: 14px;
+  padding: 0 2px;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.afkar-drag-handle:hover,
+.earnifyx-drag-handle:hover {
+  color: #00f0ff;
+}
+
+.afkar-drag-handle:active,
+.earnifyx-drag-handle:active {
+  cursor: grabbing;
+}
+
+/* Left Group */
+.afkar-dock-left,
+.earnifyx-dock-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.afkar-channel-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, rgba(255, 0, 60, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
+  border: 1px solid rgba(255, 0, 80, 0.35);
+  padding: 3px 8px;
+  border-radius: 18px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.afkar-channel-btn:hover {
+  border-color: #00f0ff;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.afkar-dock-logo {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  object-fit: cover;
+  box-shadow: 0 0 6px rgba(0, 240, 255, 0.5);
+}
+
+.afkar-dock-brand {
+  font-size: 12px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #00f0ff 0%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+}
+
+.afkar-yt-badge {
+  background: #ff0033;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 10px;
+}
+
+.afkar-status-dot,
+.earnifyx-status-dot {
+  width: 7px;
+  height: 7px;
+  background: #00e676;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00e676;
+}
+
+/* Center Group */
+.afkar-dock-center,
+.earnifyx-dock-center {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.afkar-count-badge,
+.earnifyx-count-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(0, 240, 255, 0.12);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  color: #00f0ff;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Auto Save Toggle */
+.afkar-toggle-wrap,
+.earnifyx-toggle-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #cbd5e1;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.afkar-switch,
+.earnifyx-switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 16px;
+}
+
+.afkar-switch input,
+.earnifyx-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.afkar-slider,
+.earnifyx-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #334155;
+  transition: .25s;
+  border-radius: 20px;
+}
+
+.afkar-slider:before,
+.earnifyx-slider:before {
+  position: absolute;
+  content: "";
+  height: 10px;
+  width: 10px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .25s;
+  border-radius: 50%;
+}
+
+.afkar-switch input:checked + .afkar-slider,
+.earnifyx-switch input:checked + .earnifyx-slider {
+  background: linear-gradient(135deg, #00f0ff 0%, #a855f7 100%);
+}
+
+.afkar-switch input:checked + .afkar-slider:before,
+.earnifyx-switch input:checked + .earnifyx-slider:before {
+  transform: translateX(14px);
+}
+
+/* Right Group Buttons */
+.afkar-dock-right,
+.earnifyx-dock-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.afkar-btn-all,
+.earnifyx-btn-all {
+  background: linear-gradient(135deg, #00f0ff 0%, #a855f7 100%);
+  color: #0a0d16;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0, 240, 255, 0.4);
+}
+
+.afkar-btn-all:hover:not(:disabled),
+.earnifyx-btn-all:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 240, 255, 0.6);
+}
+
+.afkar-btn-all:disabled,
+.earnifyx-btn-all:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  background: #334155;
+  color: #94a3b8;
+  box-shadow: none;
+}
+
+.afkar-btn-drawer,
+.earnifyx-btn-drawer {
+  background: #21293c;
+  color: #e2e8f0;
+  border: 1px solid #334155;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.afkar-btn-drawer:hover,
+.earnifyx-btn-drawer:hover {
+  background: #334155;
+  border-color: #00f0ff;
+  color: #fff;
+}
+
+.afkar-btn-min,
+.earnifyx-btn-min {
+  background: transparent;
+  color: #94a3b8;
+  border: 1px solid transparent;
+  font-size: 14px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.afkar-btn-min:hover,
+.earnifyx-btn-min:hover {
+  background: #21293c;
+  color: #fff;
+  border-color: #334155;
+}
+
+/* ==========================================================================
+   3. Expandable Scenes Drawer
+   ========================================================================== */
+.afkar-scenes-drawer,
+.earnifyx-scenes-drawer {
+  display: none;
+  margin-bottom: 10px;
+  background: rgba(12, 16, 26, 0.97);
+  border: 1px solid rgba(35, 45, 66, 0.95);
+  border-radius: 16px;
+  padding: 12px;
+  max-height: 280px;
+  width: 580px;
+  max-width: 90vw;
+  overflow-y: auto;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.75), 0 0 20px rgba(0, 240, 255, 0.15);
+  backdrop-filter: blur(24px);
+  animation: afkarSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.afkar-scenes-drawer.open,
+.earnifyx-scenes-drawer.open {
+  display: block !important;
+}
+
+@keyframes afkarSlideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.afkar-drawer-header,
+.earnifyx-drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #232a3d;
+  font-size: 12px;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+.afkar-drawer-title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.afkar-drawer-logo {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.afkar-drawer-yt-link {
+  color: #00f0ff;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  padding: 3px 8px;
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+
+.afkar-drawer-yt-link:hover {
+  background: rgba(0, 240, 255, 0.2);
+  border-color: #00f0ff;
+}
+
+.afkar-drawer-list,
+.earnifyx-drawer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.afkar-scene-card,
+.earnifyx-scene-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #161a26;
+  border: 1px solid #242c3f;
+  border-radius: 10px;
+  padding: 8px 12px;
+  gap: 12px;
+  transition: all 0.2s ease;
+}
+
+.afkar-scene-card:hover,
+.earnifyx-scene-card:hover {
+  border-color: rgba(0, 240, 255, 0.5);
+  background: #1a2030;
+}
+
+.afkar-card-left,
+.earnifyx-card-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+
+.afkar-thumb,
+.earnifyx-thumb {
+  width: 46px;
+  height: 46px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #334155;
+  flex-shrink: 0;
+  background: #0f172a;
+}
+
+.afkar-thumb-fallback,
+.earnifyx-thumb-fallback {
+  width: 46px;
+  height: 46px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  border: 1px solid #334155;
+  flex-shrink: 0;
+}
+
+.afkar-info,
+.earnifyx-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.afkar-scene-title,
+.earnifyx-scene-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #f1f5f9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.afkar-num-tag,
+.earnifyx-num-tag {
+  background: rgba(0, 240, 255, 0.15);
+  color: #00f0ff;
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.afkar-badge-raw,
+.earnifyx-badge-raw {
+  font-size: 10px;
+  color: #00f0ff;
+  font-weight: 600;
+}
+
+.afkar-card-actions,
+.earnifyx-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.afkar-btn-preview,
+.earnifyx-btn-preview {
+  background: #21293c;
+  color: #e2e8f0;
+  border: 1px solid #334155;
+  font-size: 12px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.afkar-btn-preview:hover,
+.earnifyx-btn-preview:hover {
+  background: #334155;
+  border-color: #00f0ff;
+}
+
+.afkar-btn-save,
+.earnifyx-btn-save {
+  background: linear-gradient(135deg, #00f0ff 0%, #a855f7 100%);
+  border: none;
+  color: #0a0d16;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.afkar-btn-save:hover,
+.earnifyx-btn-save:hover {
+  transform: scale(1.04);
+}
+
+.afkar-btn-save:disabled,
+.earnifyx-btn-save:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.afkar-empty-box,
+.earnifyx-empty-box {
+  text-align: center;
+  padding: 18px;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
